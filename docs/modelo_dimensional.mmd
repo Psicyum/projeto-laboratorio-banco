@@ -1,0 +1,63 @@
+erDiagram
+    DIM_TEMPO ||--o{ FATO_VENDAS : "filtra"
+    DIM_CLIENTE ||--o{ FATO_VENDAS : "cliente"
+    DIM_VENDEDOR ||--o{ FATO_VENDAS : "vendedor"
+    DIM_PRODUTO ||--o{ FATO_VENDAS : "produto"
+    DIM_FORNECEDOR ||--o{ FATO_VENDAS : "fornecedor"
+
+    DIM_TEMPO {
+      int sk_tempo PK
+      date data_completa
+      int data_yyyymmdd
+      int ano
+      int trimestre
+      int mes
+      varchar nome_mes
+    }
+    DIM_CLIENTE {
+      int sk_cliente PK
+      int customer_id UK
+      varchar nome
+      varchar email
+      varchar estado
+      varchar region
+    }
+    DIM_VENDEDOR {
+      int sk_vendedor PK
+      int seller_id UK
+      varchar nome
+      varchar email
+      varchar estado
+      varchar region
+      numeric comissao_percentual
+    }
+    DIM_PRODUTO {
+      int sk_produto PK
+      int product_id UK
+      varchar nome_produto
+      varchar categoria
+      numeric preco_cadastro
+    }
+    DIM_FORNECEDOR {
+      int sk_fornecedor PK
+      int supplier_id UK
+      varchar nome
+      varchar email
+      varchar estado
+      varchar region
+    }
+    FATO_VENDAS {
+      int sk_venda PK
+      int sk_tempo FK
+      int sk_cliente FK
+      int sk_vendedor FK
+      int sk_produto FK
+      int sk_fornecedor FK
+      int sales_id
+      int item_id
+      int quantidade
+      numeric preco_unitario
+      numeric subtotal
+      numeric comissao_percentual
+      numeric valor_comissao
+    }
